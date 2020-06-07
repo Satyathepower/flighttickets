@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="add53e3a-60dc-46fe-a5fd-b79505ca936c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/flighttickets.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../onlinetest/src/main/java/com/rivigo/onlinetest/constant/Constant.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../onlinetest/src/main/java/com/rivigo/onlinetest/controller/FlightController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../onlinetest/src/main/java/com/rivigo/onlinetest/entiry/Flight.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../onlinetest/src/main/java/com/rivigo/onlinetest/entiry/User.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../onlinetest/src/main/java/com/rivigo/onlinetest/service/FlightService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../onlinetest/src/main/java/com/rivigo/onlinetest/service/FlightServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/rivigo/flighttickets/controller/FlightController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/rivigo/flighttickets/controller/FlightController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,22 +75,22 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="524" y="83" width="374" height="626" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1591517389727" />
-    <state width="1253" height="133" key="GridCell.Tab.0.bottom" timestamp="1591531805924">
+    <state width="1253" height="139" key="GridCell.Tab.0.bottom" timestamp="1591532050912">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="133" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1591531805924" />
-    <state width="1253" height="133" key="GridCell.Tab.0.center" timestamp="1591531805922">
+    <state width="1253" height="139" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1591532050912" />
+    <state width="1253" height="139" key="GridCell.Tab.0.center" timestamp="1591532050911">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="133" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1591531805922" />
-    <state width="1253" height="133" key="GridCell.Tab.0.left" timestamp="1591531805921">
+    <state width="1253" height="139" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1591532050911" />
+    <state width="1253" height="139" key="GridCell.Tab.0.left" timestamp="1591532050911">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="133" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1591531805921" />
-    <state width="1253" height="133" key="GridCell.Tab.0.right" timestamp="1591531805923">
+    <state width="1253" height="139" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1591532050911" />
+    <state width="1253" height="139" key="GridCell.Tab.0.right" timestamp="1591532050911">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="133" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1591531805923" />
+    <state width="1253" height="139" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1591532050911" />
     <state width="1253" height="209" key="GridCell.Tab.1.bottom" timestamp="1591520651206">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
