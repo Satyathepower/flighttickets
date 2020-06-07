@@ -6,6 +6,8 @@ import com.rivigo.flighttickets.entity.Flight;
 import com.rivigo.flighttickets.entity.User;
 import com.rivigo.flighttickets.service.FlightService;
 import com.rivigo.flighttickets.service.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class FlightController {
+
+    private static final Logger LOGGER = LogManager.getLogger(FlightController.class);
+
 
     @Autowired
     private FlightService flightService;
@@ -27,36 +32,50 @@ public class FlightController {
     }*/
 
     @PostMapping(path= "/scheduleFlight" )
-    public ResponseEntity<Object> scheduleFlight(@RequestBody Flight flight) {
-        Flight flight1=  flightService.getFlightDetail(flight.getFlightNumber());
-        if(flight1 ==null){
-            flightService.saveFlight(flight);
-            Status status=new Status();
-            status.setStatus(Constant.SUCCESS);
-            return new ResponseEntity<Object>(status, HttpStatus.OK);
-        }else {
-            FailedStatus status = new FailedStatus();
-            status.setStatus(Constant.FAILED);
-            status.setMessage(Constant.FLIGHT_EXISTS);
-            return new ResponseEntity<Object>(status, HttpStatus.OK);
+    public ResponseEntity<Object> scheduleFlight(@RequestBody FlightDetail flightDetail) {
+        try {
+            Flight flight1 = flightService.getFlightDetail(flightDetail.getFlightNumber());
+            if (flight1 == null) {
+                Flight flight = new Flight();
+                flight.setFlightNumber(flightDetail.getFlightNumber());
+                flight.setNoOfSeats(flightDetail.getNoOfSeats());
+                flightService.saveFlight(flight);
+                Status status = new Status();
+                status.setStatus(Constant.SUCCESS);
+                LOGGER.info("Send Status ");
+                return new ResponseEntity<Object>(status, HttpStatus.OK);
+            } else {
+                FailedStatus status = new FailedStatus();
+                status.setStatus(Constant.FAILED);
+                status.setMessage(Constant.FLIGHT_EXISTS);
+                return new ResponseEntity<Object>(status, HttpStatus.OK);
+            }
+        }catch (Exception e){
+            LOGGER.error(e.getMessage(),e);
         }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
     // localhost:9191/getAvailableSeats?flightNumber=sat
 
     @GetMapping(path="/getAvailableSeats")
     public ResponseEntity<Object> getAvailableSeats(@RequestParam String flightNumber){
-        Flight flight1=  flightService.getFlightDetail(flightNumber);
-        if(flight1 !=null) {
-            FlightSeatStatus status = new FlightSeatStatus();
-            status.setCount(flight1.getNoOfSeats());
-            status.setStatus(Constant.SUCCESS);
-            return new ResponseEntity<Object>(status, HttpStatus.OK);
-        }else {
-            Status status = new Status();
-            status.setStatus(Constant.FAILED);
-            return new ResponseEntity<Object>(status, HttpStatus.OK);
+        try {
+            Flight flight1 = flightService.getFlightDetail(flightNumber);
+            if (flight1 != null) {
+                FlightSeatStatus status = new FlightSeatStatus();
+                status.setCount(flight1.getNoOfSeats());
+                status.setStatus(Constant.SUCCESS);
+                return new ResponseEntity<Object>(status, HttpStatus.OK);
+            } else {
+                Status status = new Status();
+                status.setStatus(Constant.FAILED);
+                return new ResponseEntity<Object>(status, HttpStatus.OK);
+            }
+        }catch (Exception e){
+            LOGGER.error(e.getMessage(),e);
         }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
 
     }
 
@@ -69,29 +88,34 @@ public class FlightController {
 
     @PostMapping(path="/bookSeat")
     public ResponseEntity<Object> bookSeat(@RequestBody BookSeat bookSeat) {
+        try {
 
-        Flight flight1 = flightService.getFlightDetail(bookSeat.getFlightNumber());
-        if (flight1 != null) {
-            if (flight1.getNoOfSeats() > Constant._ZERO) {
-                User user = new User();
-                user.setName(bookSeat.getUserName());
-                user.setSeatNumber(flight1.getNoOfSeats());
-                userService.saveUser(user);
+            Flight flight1 = flightService.getFlightDetail(bookSeat.getFlightNumber());
+            if (flight1 != null) {
+                if (flight1.getNoOfSeats() > Constant._ZERO) {
+                    User user = new User();
+                    user.setName(bookSeat.getUserName());
+                    user.setSeatNumber(flight1.getNoOfSeats());
+                    user.setFlightNumber(flight1.getFlightNumber());
+                    userService.saveUser(user);
 
-                flight1.setNoOfSeats(flight1.getNoOfSeats() - Constant._ONE);
-                flightService.saveFlight(flight1);
+                    flight1.setNoOfSeats(flight1.getNoOfSeats() - Constant._ONE);
+                    flightService.saveFlight(flight1);
 
-                BookSuccessStatus status = new BookSuccessStatus();
-                status.setStatus(Constant.SUCCESS);
-                status.setSeatNumber(flight1.getNoOfSeats()+Constant._ONE);
-                return new ResponseEntity<Object>(status, HttpStatus.OK);
-            } else {
-                FailedStatus failedStatus = new FailedStatus();
-                failedStatus.setStatus(Constant.FAILED);
-                failedStatus.setMessage(Constant.TICKETS_FULL);
-                return new ResponseEntity<Object>(failedStatus, HttpStatus.OK);
+                    BookSuccessStatus status = new BookSuccessStatus();
+                    status.setStatus(Constant.SUCCESS);
+                    status.setSeatNumber(flight1.getNoOfSeats() + Constant._ONE);
+                    return new ResponseEntity<Object>(status, HttpStatus.OK);
+                } else {
+                    FailedStatus failedStatus = new FailedStatus();
+                    failedStatus.setStatus(Constant.FAILED);
+                    failedStatus.setMessage(Constant.TICKETS_FULL);
+                    return new ResponseEntity<Object>(failedStatus, HttpStatus.OK);
+                }
+
             }
-
+        }catch (Exception e){
+            LOGGER.error(e.getMessage(),e);
         }
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }

@@ -16,6 +16,17 @@ public class User {
     @Column(name="seatNumber")
     private int seatNumber;
 
+    @Column(name="flightNumber")
+    private String flightNumber;
+
+    public String getFlightNumber() {
+        return flightNumber;
+    }
+
+    public void setFlightNumber(String flightNumber) {
+        this.flightNumber = flightNumber;
+    }
+
     public int getSeatNumber() {
         return seatNumber;
     }
