@@ -95,17 +95,21 @@ public class FlightController {
                 if (flight1.getNoOfSeats() > Constant._ZERO) {
                     User user = new User();
                     user.setName(bookSeat.getUserName());
-                    user.setSeatNumber(flight1.getNoOfSeats());
-                    user.setFlightNumber(flight1.getFlightNumber());
-                    userService.saveUser(user);
+                  synchronized (this) {
+                      Flight check = flightService.getFlightDetail(bookSeat.getFlightNumber());
+                      if (check.getNoOfSeats() > Constant._ZERO) {
+                          flight1.setNoOfSeats(check.getNoOfSeats() - Constant._ONE);
+                          flightService.saveFlight(flight1);
+                          user.setSeatNumber(check.getNoOfSeats());
+                          user.setFlightNumber(check.getFlightNumber());
+                          userService.saveUser(user);
+                      }
 
-                    flight1.setNoOfSeats(flight1.getNoOfSeats() - Constant._ONE);
-                    flightService.saveFlight(flight1);
-
-                    BookSuccessStatus status = new BookSuccessStatus();
-                    status.setStatus(Constant.SUCCESS);
-                    status.setSeatNumber(flight1.getNoOfSeats() + Constant._ONE);
-                    return new ResponseEntity<Object>(status, HttpStatus.OK);
+                      BookSuccessStatus status = new BookSuccessStatus();
+                      status.setStatus(Constant.SUCCESS);
+                      status.setSeatNumber(flight1.getNoOfSeats() + Constant._ONE);
+                      return new ResponseEntity<Object>(status, HttpStatus.OK);
+                  }
                 } else {
                     FailedStatus failedStatus = new FailedStatus();
                     failedStatus.setStatus(Constant.FAILED);
