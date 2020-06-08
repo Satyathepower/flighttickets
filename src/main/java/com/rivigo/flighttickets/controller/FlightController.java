@@ -110,7 +110,9 @@ public class FlightController {
                       BookSuccessStatus status = new BookSuccessStatus();
                       status.setStatus(Constant.SUCCESS);
                       status.setSeatNumber(flight1.getNoOfSeats() + Constant._ONE);
+                      LOGGER.info("Tickets Booked");
                       return new ResponseEntity<>(status, HttpStatus.OK);
+
                   }
                 } else {
                     FailedStatus failedStatus = new FailedStatus();
