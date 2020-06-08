@@ -25,3 +25,12 @@
 2020-06-08T10:43:49.595+0530 INFO No active profile set, falling back to default profiles: default
 2020-06-08T10:43:54.580+0530 INFO Started FlightticketsApplication in 5.362 seconds (JVM running for 6.203)
 2020-06-08T10:45:58.401+0530 INFO Send Status 
+2020-06-08T10:51:05.879+0530 INFO Starting FlightticketsApplication v0.0.1-SNAPSHOT on TECH-SATENDER with PID 28524 (/home/Satender/satendra/gitproject/flighttickets/target/flighttickets-0.0.1-SNAPSHOT.jar started by Satender in /home/Satender/satendra/gitproject/flighttickets)
+2020-06-08T10:51:05.883+0530 DEBUG Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
+2020-06-08T10:51:05.884+0530 INFO No active profile set, falling back to default profiles: default
+2020-06-08T10:51:11.452+0530 INFO Started FlightticketsApplication in 5.917 seconds (JVM running for 6.862)
+2020-06-08T11:03:01.278+0530 INFO Starting FlightticketsApplication on TECH-SATENDER with PID 30520 (/home/Satender/satendra/gitproject/flighttickets/target/classes started by Satender in /home/Satender/satendra/gitproject/flighttickets)
+2020-06-08T11:03:01.282+0530 DEBUG Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
+2020-06-08T11:03:01.283+0530 INFO No active profile set, falling back to default profiles: default
+2020-06-08T11:03:06.143+0530 INFO Started FlightticketsApplication in 5.247 seconds (JVM running for 6.118)
+2020-06-08T11:04:06.878+0530 INFO Send Status 
